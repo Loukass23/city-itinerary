@@ -1,28 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Dashboard from './components/dashboard/Dashboard'
+import ItineraryChoice from './components/dashboard/ItineraryChoice'
+import CreateItinerary from './components/itinerary/CreateItinerary'
+import ItineraryDetails from './components/dashboard/ItineraryDetails'
+import SignIn from './components/auth/SignIn'
+import SignUp from './components/auth/SignUp'
+import Navbar from './components/layout/Navbar'
+import AppNav from './components/layout/AppNav'
 import './App.css';
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Navbar />
+          <Switch>
+            <Route exact path='/' component={Dashboard} />
+            <Route path='/city/:name' component={ItineraryChoice} />
+            <Route path='/city/:name/itinerary/:id' component={ItineraryDetails} />
+            <Route path='/create' component={CreateItinerary} />
+            <Route path='/signin' component={SignIn} />
+            <Route path='/signup' component={SignUp} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
-
-export default App;
