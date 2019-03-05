@@ -1,23 +1,5 @@
 const initState = {
-    itineraries: [{
-        id: 1,
-        title: 'Morning Walk',
-        cityName: 'Berlin',
 
-    },
-    {
-        id: 2,
-        title: 'Pub Crawl',
-        cityName: 'Paris',
-
-    },
-    {
-        id: 3,
-        title: 'Boat Tour',
-        cityName: 'Paris',
-
-    }
-    ]
 }
 
 // const itineraryReducer = (state = initState, action) => {

@@ -14,10 +14,17 @@ export const createItinerary = (itinerary) => {
         const authorId = getState().firebase.auth.uid
         const firestore = getFirestore();
         firestore.collection('itineraries').add({
-            ...itinerary,
+            //...itinerary,
+            cityName: itinerary.cityName,
+            title: itinerary.title,
             authorFirstName: profile.firstName,
             authorLastName: profile.lastName,
             authorId: authorId,
+            photoURL: itinerary.photoURL,
+            summary: itinerary.summary,
+            price: itinerary.price,
+            rating: itinerary.rating,
+            duration: itinerary.duration,
             createdAt: new Date()
         }).then(() => {
             dispatch({

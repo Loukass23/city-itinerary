@@ -9,7 +9,6 @@ const style = {
    border: '3px solid teal'
 };
 const SignedInLinks = (props) => {
-   console.log(props)
    return (
 
       <ul className="right hide-on-med-and-down">

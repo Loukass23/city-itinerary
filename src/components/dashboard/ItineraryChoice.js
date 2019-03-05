@@ -13,13 +13,10 @@ class ItineraryChoice extends Component {
         return (
             <div className="dashboard container">
                 <div className="row">
-                    <div className="col s12 m6">
+                    <div className="">
                         <ItineraryList itineraries={itineraries} city={city} />
                     </div>
 
-                    <div className="col sm8 offset-m1">
-
-                    </div>
 
                 </div>
                 <div className="dashboard container">
