@@ -22,17 +22,17 @@ const initState = {
 }
 
 const cityReducer = (state = initState, action) => {
-    // switch (action.type) {
-    //     case 'CREATE_PROJECT':
-    //         console.log('created project', action.project)
-    //         return state;
-    //     case 'CREATE_PROJECT_ERROR':
-    //         console.log('create project error', action.err)
-    //         return state;
-    //     default:
-    //         return state;
-    // }
-    return state
+    switch (action.type) {
+        case 'CREATE_CITY':
+            console.log('created city', action.project)
+            return state;
+        case 'CREATE_CITY_ERROR':
+            console.log('create city error', action.err)
+            return state;
+        default:
+            return state;
+    }
+
 
 
 }

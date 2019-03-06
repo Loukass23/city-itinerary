@@ -3,7 +3,7 @@ import ItineraryList from '../itinerary/ItineraryList'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 class ItineraryChoice extends Component {
@@ -12,15 +12,18 @@ class ItineraryChoice extends Component {
         console.log(this.props)
         return (
             <div className="dashboard container">
-                <div className="row">
-                    <div className="">
-                        <ItineraryList itineraries={itineraries} city={city} />
+                <div className="row valign-wrapper">
+                    <div className="col s1" >
+                        <Link to='/city'><a class="btn-floating btn-large waves-effect waves-light red lighten-3">
+                            <i className=" white-text lighten-3 fas fa-2x fa-arrow-left " /></a></Link>
                     </div>
-
-
+                    <h3 className="col s11" >
+                        {city}
+                    </h3>
                 </div>
-                <div className="dashboard container">
 
+                <div className="">
+                    <ItineraryList itineraries={itineraries} city={city} />
                 </div>
 
             </div>

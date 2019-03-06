@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import CityList from '../city/CityList'
+import CityChoice from './CityChoice'
 import Notifications from './Notifications'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
@@ -16,11 +16,11 @@ class Dashboard extends Component {
             <div className="dashboard container">
                 <div className="row">
                     <div className="col s12 m6">
-                        <CityList cities={cities} />
+                        <CityChoice />
                     </div>
 
                     <div className="col sm8 offset-m1">
-
+                        <Notifications notifications={notifications} />
                     </div>
 
                 </div>

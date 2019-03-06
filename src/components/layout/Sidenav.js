@@ -5,10 +5,12 @@ import { Link } from 'react-router-dom'
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
 import { connect } from 'react-redux'
-import BerlinPhoto from '../../assets/img/Berlin.jpg'
 import Notifications from '../dashboard/Notifications'
 import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase'
+import SignIn from '../auth/SignIn'
+import { NavLink } from 'react-router-dom'
+
 
 
 
@@ -24,22 +26,23 @@ class Sidenav extends Component {
             draggable: true
         };
 
+
     }
     render() {
         const { auth, profile, notifications } = this.props
-        console.log(notifications)
+
         const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />
         const avatar = profile.avatar ? <img width="50px" className="circle valign-wrapper" src={profile.avatar} alt="" /> : <div className='btn btn-floating teal lighten-1'>{profile.initials}</div>
 
         return (
 
-            <>
+            <div className="container-fluid px-3">
                 <nav>
                     <div className="nav-wrapper">
 
                         <Link to='/' className="brand-logo" >City Itineraries</Link>
                         <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
-                        <ul className="right hide-on-med-and-down valign-wrapper">
+                        <ul style={{ paddingRight: "10px" }} className="right hide-on-med-and-down valign-wrapper pr3">
                             {links}
 
                             <li> {avatar}</li>
@@ -50,24 +53,31 @@ class Sidenav extends Component {
                     </div>
                 </nav>
 
-                <ul class="sidenav" id="mobile-demo">
+                <ul className="sidenav" id="mobile-demo">
                     <li>
-                        <div className="user-view">
-                            <div className="background">
-                                <img src={BerlinPhoto} alt="" />
+                        {auth.uid && <div className="user-view valign-wrapper">
+                            <div className="background indigo lighten-4">
+                                {/* <img src={BerlinPhoto} alt="" /> */}
                             </div>
                             <div className="row">
                                 <div className="col s4">
                                     {avatar}
                                 </div>
-                                <div className="col s6">
+                                <div className="col s8">
                                     <span className="black-text name">{profile.firstName} {profile.lastName}</span>
                                 </div>
-
                             </div>
-                        </div>
+                        </div>}
+                        {!auth.uid && <div className="row">
+                            <div className="col s12">
+                                <SignIn />
+                                Not a user? <NavLink to='/signup'> Sign Up</NavLink>
+                            </div>
+
+
+                        </div>}
                     </li>
-                    {links}
+                    {auth.uid && <SignedInLinks profile={profile} />}
 
                     <li>
                         <div className="divider" />
@@ -78,7 +88,7 @@ class Sidenav extends Component {
                 </ul>
 
 
-            </>
+            </div>
         );
     }
 }

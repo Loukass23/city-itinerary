@@ -45,7 +45,16 @@ class SignIn extends Component {
                             {authErr ? <p>{authErr}</p> : null}
                         </div>
                     </div>
-                    <button onClick={this.handleGoogleButton} className="btn teal lighten-1 z-depth-0">Google SignIn</button>
+                    <hr />
+                    <div className="row">
+                        <p className='col s8' >Google account</p>
+                        <div className="col s4"><a className="btn-floating btn-large waves-effect waves-light teal lighten-1" onClick={this.handleGoogleButton}>
+                            <i className=" white-text lighten-3 fab fa-2x fa-google" /></a></div>
+
+                    </div>
+
+
+
 
                 </form>
             </div>

@@ -7,7 +7,7 @@ const CityList = ({ cities }) => {
         <div className="cities-list section">
             {cities && cities.map(city => {
                 return (
-                    <Link to={'/city/' + city.name} key={city.name}>
+                    <Link to={'/city/' + city.cityName} key={city.cityName}>
                         <MarcusCity city={city} />
                     </Link>
                 )

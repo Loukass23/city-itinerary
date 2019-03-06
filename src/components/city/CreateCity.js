@@ -1,35 +1,46 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createItinerary } from '../../store/action/itineraryAction'
+import { createCity } from '../../store/action/cityAction'
 import { Link } from 'react-router-dom'
 
 import firebase from "firebase";
-import './itinerary.css'
 
+import countryList from 'react-select-country-list'
 import 'materialize-css/dist/css/materialize.min.css'
 import M from 'materialize-css/dist/js/materialize.min.js'
 
 
-class CreateItinerary extends Component {
+class CreateCity extends Component {
 
     componentDidMount() {
         console.log(M);
         M.AutoInit();
 
+
     }
+
     state = {
-        title: '',
+        countryName: '',
         cityName: '',
         file: null,
         isUploading: false,
         progress: 0,
         photoURL: "",
-        duration: null,
-        price: null,
-        rating: null,
-        summary: null
+        summary: null,
+        options: countryList().getData(),
+        value: "",
 
     }
+
+
+    changeSelectHandler = value => {
+        this.setState({ value })
+    }
+
+    changeHandler = value => {
+        this.setState({ value })
+    }
+
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
@@ -37,7 +48,7 @@ class CreateItinerary extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.createItinerary(this.state)
+        this.props.createCity(this.state)
         this.props.history.push('/')
     }
     handleUpload = () => {
@@ -47,7 +58,7 @@ class CreateItinerary extends Component {
         console.log(this.state.file.name)
         this.setState({ isUploading: true, progress: 0 })
 
-        const uploadTask = storageRef.child(`images/${this.state.file.name}`).put(this.state.file); //create a child directory called images, and place the file inside this directory
+        const uploadTask = storageRef.child(`cities/${this.state.file.name}`).put(this.state.file); //create a child directory called images, and place the file inside this directory
 
         uploadTask.on('state_changed', (snapshot) => {
             console.log(snapshot)
@@ -62,7 +73,7 @@ class CreateItinerary extends Component {
             this.setState({ isUploading: false, progress: 100 })
             firebase
                 .storage()
-                .ref("images")
+                .ref("cities")
                 .child(`${this.state.file.name}`)
                 .getDownloadURL()
                 .then(url => this.setState({ photoURL: url }));
@@ -76,17 +87,17 @@ class CreateItinerary extends Component {
             width: this.state.progress + "%"
         }
         const { cities, input } = this.props
-        console.log(this.props)
+        console.log(this.state.options)
         //if (!auth.uid) return <Redirect to='/signin' />
         return (
             <div className="container">
                 <div className="row valign-wrapper">
                     <div className="col s1" >
-                        <Link to='/city'><a class="btn-floating btn-large waves-effect waves-light red lighten-3">
+                        <Link to='/city'><a className="btn-floating btn-large waves-effect waves-light red lighten-3">
                             <i className=" white-text lighten-3 fas fa-2x fa-arrow-left " /></a></Link>
                     </div>
                     <h4 className="col s11" >
-                        Create Itinerary
+                        Create City
                     </h4>
                 </div>
                 <form onSubmit={this.handleSubmit} className="white">
@@ -94,34 +105,25 @@ class CreateItinerary extends Component {
 
 
                     <div className="input-field">
-                        <label htmlFor="title" >Title</label>
-                        <input required type="text" id="title" onChange={this.handleChange} />
+                        <label htmlFor="cityName" >City name</label>
+                        <input required type="text" id="cityName" onChange={this.handleChange} />
                     </div>
 
                     <div className="input-field">
-                        <select required onChange={this.handleChange} id="cityName">
+                        <select required
+                            value={this.state.value}
+                            onChange={this.changeSelectHandler} id="countryName">
 
-                            {cities && cities.map((city, i) => {
+                            {this.state.options && this.state.options.map((country, i) => {
                                 return (
-                                    <option htmlFor="cityName" key={i} value={city.name}>{city.name}</option>
+                                    <option htmlFor="countryName" key={i} value={country.label}>{country.label}</option>
 
                                 )
                             })}
                         </select>
-                        <label>Select City</label>
+                        <label>Select Country</label>
                     </div>
-                    <div className="input-field">
-                        <select required onChange={this.handleChange} id="price">
-                            <option >Cheap</option>
-                            <option >Moderate</option>
-                            <option >Expensive</option>
-                        </select>
-                        <label htmlFor="price">Price</label>
-                    </div>
-                    <div className="input-field">
-                        <input required id="duration" type="text" length="10" className="materialize-textarea" onChange={this.handleChange} />
-                        <label htmlFor="duration">Duration in hours</label>
-                    </div>
+
 
                     <div className="input-field">
                         <label required htmlFor="summary" >Summary</label>
@@ -164,14 +166,10 @@ class CreateItinerary extends Component {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        createItinerary: (itinerary) => dispatch(createItinerary(itinerary))
+        createCity: (city) => dispatch(createCity(city))
 
     }
 }
-const mapStateToProp = (state) => {
-    return {
-        cities: state.city.cities
-    }
-}
 
-export default connect(mapStateToProp, mapDispatchToProps)(CreateItinerary)
+
+export default connect(null, mapDispatchToProps)(CreateCity)
