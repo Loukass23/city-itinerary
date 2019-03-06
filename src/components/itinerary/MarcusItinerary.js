@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const MarcusItinerary = ({ itinerary, city }) => {
     console.log(itinerary)
     return (
-        <div className='card medium itinerary-list-item-card col s12 m6 l4'>
+        <div className='card medium itinerary-list-item-card col s12 m6 xl4 mx-4'>
             <div className='card-image'>
                 <img src={itinerary.photoURL} alt='' className='activator' />
             </div>
@@ -15,9 +15,9 @@ const MarcusItinerary = ({ itinerary, city }) => {
                     {itinerary.title}
                     <i className='material-icons right'>more_vert</i>
                 </span>
-                <div className='itinerary-list-item-details'>
-                    <i className='far fa-clock small red-text text-lighten-2' />
-                    <p>{itinerary.duration}</p>
+                <div className='itinerary-list-item-details red-text text-lighten-2'>
+
+                    <p>{itinerary.duration}<i className='far fa-clock small red-text text-lighten-2' /></p>
                     <i className='fas fa-2x fa-euro-sign small red-text text-lighten-2' />
                     <p>{itinerary.price}</p>
                     <i className='far fa-2x fa-star red-text text-lighten-2' />
@@ -26,9 +26,9 @@ const MarcusItinerary = ({ itinerary, city }) => {
             </div>
             <div className='card-reveal white-text' id='card-reveal'>
                 <span className='center-align itinerary-list-item-title activator card-title'>
-                    <i className='material-icons right black'>close</i>
+                    <i className='material-icons right '>close</i>
                 </span>
-                <p className='itinerary-list-item-summary black-text'>{itinerary.summary}</p>
+                <p className='itinerary-list-item-summary'>{itinerary.summary}</p>
 
                 <div className='explore-itinerary-btn center-align'>
                     <Link to={{

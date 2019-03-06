@@ -1,3 +1,315 @@
-#file-uploader {
-    background-color: pink;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+.indicator-item {
+    background-color: #e57373 !important;
+}
+
+/* Buttons */
+
+.social-network-button,
+.edit-profile-button,
+.signup-button {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.create-review-btn {
+    width: 100%;
+}
+
+.view-profile-btn {
+    font-size: 9px;
+    margin-top: 5px;
+}
+
+.profile-submit-button,
+.delete-profile-button,
+.create-profile-button {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    border: 1px solid #e57373
+}
+
+.login-btn {
+    line-height: 52px;
+    padding: 0px;
+}
+
+#review-button {
+    border: 1px solid #e57373
+}
+
+
+
+
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 1px #e57373 !important;
+    box-shadow: 0 1px 0 0 #e57373 !important;
+}
+
+.input-field input[type=email]:focus {
+    border-bottom: 1px #e57373 !important;
+    box-shadow: 0 1px 0 0 #e57373 !important;
+}
+
+.input-field input[type=password]:focus {
+    border-bottom: 1px #e57373 !important;
+    box-shadow: 0 1px 0 0 #e57373 !important;
+}
+
+.input-field textarea:focus {
+    border-bottom: 1px #e57373 !important;
+    box-shadow: 0 1px 0 0 #e57373 !important;
+}
+
+/* label underline focus color */
+.input-field input .invalid[type=text]:focus {
+    border-bottom: 1px #FF0000 !important;
+    box-shadow: 0 1px 0 0 #FF0000 !important;
+}
+
+.input-field input .invalid[type=email]:focus {
+    border-bottom: 1px #FF0000 !important;
+    box-shadow: 0 1px 0 0 #FF0000 !important;
+}
+
+.input-field input .invalid[type=password]:focus {
+    border-bottom: 1px #FF0000 !important;
+    box-shadow: 0 1px 0 0 #FF0000 !important;
+}
+
+.card-panel {
+    margin-top: 75px;
+}
+
+/* Components - Navbar: Side Nav */
+.side-nav-li-1 {
+    margin-top: 125px;
+}
+
+.sidenav-close {
+    margin-bottom: 25px
+}
+
+/* Loader */
+.loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+/* Landing Page */
+
+.landing {
+    position: relative;
+    background: url('https://wallpapermemory.com/uploads/705/budapest-background-hd-1920x1080-479639.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+
+}
+
+.dark-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.landing-col {
+    margin-top: 100px;
+}
+
+.landing-title {
+    /* font-family: 'Caveat', cursive; */
+}
+
+.landing-hr {
+    width: 80%;
+}
+
+.landing-button {
+    margin: 5px;
+}
+
+/* Itineraries Page */
+.itinerary-list-item-title {
+    font-family: 'Roboto';
+    /* font-family: 'Caveat', cursive; */
+}
+
+.itinerary-list-item-summary {
+    /* font-family: 'Caveat', cursive; */
+    font-size: 1.6rem;
+}
+
+.itinerary-list-item-details {
+    margin-top: 15px;
+    /* font-family: 'Caveat', cursive; */
+}
+
+.itinerary-list-item-details p {
+    display: inline;
+    font-size: 20px !important;
+    margin-left: 5px !important
+}
+
+.itinerary-list-item-details i {
+    display: inline;
+    margin-left: 15px !important
+}
+
+#card-reveal {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.itinerary-hashtags {
+    /* font-family: 'Caveat', cursive; */
+    display: inline;
+    font-size: 25px !important;
+    margin-left: 5px !important
+}
+
+.explore-itinerary-btn {
+    margin-top: 25px;
+}
+
+/* Reviews Section */
+.reviews-section-title {
+    /* font-family: 'Caveat', cursive; */
+    font-size: 60px !important;
+    margin: -24px;
+}
+
+#reviews-section-title-hr {
+    color: #e57373 !important;
+    background-color: #e57373 !important;
+    border: none;
+    margin-inline-start: 15px;
+    width: 50%;
+    height: 2px;
+}
+
+/* Review Component */
+#review-text {
+    font-family: 'Roboto';
+    /* font-family: 'Amatic SC', cursive; */
+    font-size: 20px;
+}
+
+#review-img {
+    border-style: none;
+    width: 50%;
+    border-radius: 50% !important;
+    margin: auto;
+    margin-top: 35px;
+}
+
+#review-user-title {
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+
+}
+
+/* Create Review Component */
+#review-modal-title {
+    font-family: 'Caveat', cursive;
+    font-size: 36px;
+}
+
+/* Activities Page */
+.itinerary-container {
+    margin-top: 25px;
+
+}
+
+/* Activity Component*/
+/* .activity-card {
+  border: 1px solid #e57373;
+  padding: 10px;
+  border-radius: 10px;
+} */
+
+.activity-card-title {
+    /* font-family: 'Caveat', cursive; */
+    font-family: 'Roboto';
+    font-size: 25px !important;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+}
+
+.activity-summary {
+    /* font-family: 'Caveat', cursive; */
+    font-family: 'Roboto';
+    font-size: 20px !important;
+    margin-bottom: 15px !important;
+}
+
+.activity-img {
+    border-radius: 50% !important;
+}
+
+.activity-detail {
+    font-family: 'Caveat', cursive;
+    font-size: 14px !important;
+    margin-left: 5px !important;
+    margin-bottom: 10px;
+
+}
+
+/* Cities Page */
+.cities-page {
+    margin-top: 25px;
+}
+
+.card .card-title {
+    padding: 20px;
+    font-size: 40px;
+    font-weight: 300;
+}
+
+/* Profile Page */
+.profile-card {
+    margin-top: 35px;
+}
+
+.profile-img {
+    border-radius: 50% !important;
+}
+
+.profile-title {
+    margin-top: 10px;
+    margin-bottom: -5px;
+}
+
+.social-icon-link {
+    padding: 5px;
+}
+
+.bio h6 span {
+    color: #000;
+    margin-left: 5px;
+    font-size: 14px;
 }

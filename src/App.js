@@ -6,7 +6,7 @@ import CreateItinerary from './components/itinerary/CreateItinerary'
 import ItineraryDetails from './components/dashboard/ItineraryDetails'
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
-import Navbar from './components/layout/Navbar'
+import Navbar from './components/layout/Sidenav'
 import AppNav from './components/layout/AppNav'
 import './App.css';
 

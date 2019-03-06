@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import CityList from '../city/CityList'
+import Notifications from './Notifications'
 import { connect } from 'react-redux'
-//import { firestoreConnect } from 'react-redux-firebase'
+import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 
@@ -9,8 +10,8 @@ import { Redirect } from 'react-router-dom'
 class Dashboard extends Component {
     render() {
 
-        const { cities } = this.props;
-        console.log(cities)
+        const { cities, notifications } = this.props;
+        console.log(notifications)
         return (
             <div className="dashboard container">
                 <div className="row">
@@ -35,19 +36,16 @@ class Dashboard extends Component {
 const mapStatetoProps = (state) => {
     //console.log(state)
     return {
-        cities: state.city.cities
+        cities: state.city.cities,
         // projects: state.firestore.ordered.projects,
         // auth: state.firebase.auth,
-        // notifications: state.firestore.ordered.notifications
+        notifications: state.firestore.ordered.notifications
     }
 }
-
-
-export default connect(mapStatetoProps)(Dashboard)
-// export default compose(
-//     connect(mapStatetoProps),
-//     firestoreConnect([
-//         { collection: 'projects', orderBy: ['createdAt', 'desc'] },
-//         { collection: 'notifications', limit: 3, orderBy: ['time', 'desc'] }
-//     ])
-// )(Dashboard)
+//export default connect(mapStatetoProps)(Dashboard)
+export default compose(
+    connect(mapStatetoProps),
+    firestoreConnect([
+        { collection: 'notifications', limit: 3, orderBy: ['time', 'desc'] }
+    ])
+)(Dashboard)

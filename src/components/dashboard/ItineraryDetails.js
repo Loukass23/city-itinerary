@@ -15,7 +15,7 @@ class ItineraryChoice extends Component {
                 <div className="row">
                     <h3>{city}</h3>
                     <div className="col s12 m6">
-                        <ItineraryList itineraries={itineraries} city={city} />
+                        Test
                     </div>
 
                     <div className="col sm8 offset-m1">

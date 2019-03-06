@@ -54,9 +54,9 @@ class CreateItinerary extends Component {
             console.log(snapshot)
             let prog = Math.round(snapshot.bytesTransferred * 100 / snapshot.totalBytes)
             this.setState({ progress: prog });
-            //this.handleProgress()
+
         }, (error) => {
-            //this.handleUploadError()
+
             console.log(error);
         }, () => {
             console.log('success');
@@ -70,39 +70,12 @@ class CreateItinerary extends Component {
 
         });
     }
-    handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
-    handleProgress = progress => this.setState({ progress });
-    handleUploadError = error => {
-        this.setState({ isUploading: true });
-        console.error(error);
-    };
-    handleUploadSuccess = filename => {
-        this.setState({ file: filename, progress: 100, isUploading: false });
-
-        firebase
-            .storage()
-            .ref("images")
-            .child(filename)
-            .getDownloadURL()
-            .then(url => this.setState({ photoURL: url }));
-    }
-    // displayPicture(e) {
-    //     e.preventDefault();
-    //     let reader = new FileReader();
-    //     console.log(e)
-    // let file = e.target.file[0]
-    // this.props.uploadImage(file)
-
-    // reader.onload = () => {
-    //     this.setState({
-    //         picture: file,
-    //         photoURL: reader.result
-    //     })
-    // }
-    // reader.readAsDataURL(file)
 
 
     render() {
+        const progressBarUp = {
+            width: this.state.progress + "%"
+        }
         const { cities, input } = this.props
         console.log(this.props)
         //if (!auth.uid) return <Redirect to='/signin' />
@@ -114,12 +87,11 @@ class CreateItinerary extends Component {
 
                     <div className="input-field">
                         <label htmlFor="title" >Title</label>
-                        <input type="text" id="title" onChange={this.handleChange} />
+                        <input required type="text" id="title" onChange={this.handleChange} />
                     </div>
 
                     <div className="input-field">
-                        <select onChange={this.handleChange} id="cityName">
-                            <option selected disabled>Choose your city</option>
+                        <select required onChange={this.handleChange} id="cityName">
 
                             {cities && cities.map((city, i) => {
                                 return (
@@ -131,35 +103,39 @@ class CreateItinerary extends Component {
                         <label>Select City</label>
                     </div>
                     <div className="input-field">
-                        <select onChange={this.handleChange} id="price">
+                        <select required onChange={this.handleChange} id="price">
                             <option >Cheap</option>
                             <option >Moderate</option>
                             <option >Expensive</option>
                         </select>
-                        <label htmlFor="price">Price in €</label>
+                        <label htmlFor="price">Price</label>
                     </div>
                     <div className="input-field">
-                        <input id="duration" type="text" length="10" className="materialize-textarea" onChange={this.handleChange} />
+                        <input required id="duration" type="text" length="10" className="materialize-textarea" onChange={this.handleChange} />
                         <label htmlFor="duration">Duration in hours</label>
                     </div>
 
                     <div className="input-field">
-                        <label htmlFor="summary" >Summary</label>
+                        <label required htmlFor="summary" >Summary</label>
                         <textarea id="summary" cols="30" rows="10" className="materialize-textarea" onChange={this.handleChange}></textarea>
                     </div>
-                    <div className="file-field input-field">
-                        <div className="btn">
-                            <span>File</span>
-                            <input accept="image/*" type="file" {...input} onChange={(e) => {
-                                this.setState({ file: e.target.files[0] }, this.handleUpload)
-                            }} />
-                        </div>
-                        <div className="file-path-wrapper col s6">
-                            <input className="file-path validate" type="text" />
-
+                    <div className="row">
+                        <div className="col s6 file-field input-field">
+                            <div className="btn">
+                                <span>File</span>
+                                <input required accept="image/*" type="file" {...input} onChange={(e) => {
+                                    this.setState({ file: e.target.files[0], isUploading: true }, this.handleUpload)
+                                }} />
+                            </div>
+                            <div className="file-path-wrapper ">
+                                <input className="file-path validate" type="text" />
+                            </div>
+                            {this.state.isUploading && <div className="progress">
+                                <div className="determinate" style={progressBarUp}></div>
+                            </div>}
                         </div>
                         <div className="col s6">
-                            {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
+                          
                             {this.state.photoURL && <img width="100px" src={this.state.photoURL} alt="" />}
                         </div>
 
