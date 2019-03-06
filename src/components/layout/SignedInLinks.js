@@ -11,7 +11,8 @@ const SignedInLinks = (props) => {
    return (
 
       <>
-         <li><NavLink to='/create'>New itinerary</NavLink></li>
+         <li><NavLink to='/createItinerary'>New itinerary</NavLink></li>
+         <li><NavLink to='/createCity'>New City</NavLink></li>
          <li><a onClick={props.signOut}>Log Out</a></li>
       </>
 

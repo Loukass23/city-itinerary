@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createItinerary } from '../../store/action/itineraryAction'
 import { Link } from 'react-router-dom'
-
+import { compose } from 'redux'
 import firebase from "firebase";
 import './itinerary.css'
-
+import { firestoreConnect } from 'react-redux-firebase'
 import 'materialize-css/dist/css/materialize.min.css'
 import M from 'materialize-css/dist/js/materialize.min.js'
 
@@ -82,8 +82,8 @@ class CreateItinerary extends Component {
             <div className="container">
                 <div className="row valign-wrapper">
                     <div className="col s1" >
-                        <Link to='/city'><a class="btn-floating btn-large waves-effect waves-light red lighten-3">
-                            <i className=" white-text lighten-3 fas fa-2x fa-arrow-left " /></a></Link>
+                        <Link to='/city'><div className="btn-floating btn-large waves-effect waves-light red lighten-3">
+                            <i className=" white-text lighten-3 fas fa-2x fa-arrow-left " /></div></Link>
                     </div>
                     <h4 className="col s11" >
                         Create Itinerary
@@ -168,10 +168,22 @@ const mapDispatchToProps = (dispatch) => {
 
     }
 }
-const mapStateToProp = (state) => {
+
+const mapStatetoProps = (state) => {
+    //console.log(state)
     return {
-        cities: state.city.cities
+        cities: state.firestore.ordered.cities,
+
     }
 }
+//export default connect(mapStatetoProps)(Dashboard)
+export default compose(
+    connect(mapStatetoProps, mapDispatchToProps),
+    firestoreConnect([
+        { collection: 'cities', orderBy: ['createdAt', 'desc'] }
+    ])
+)(CreateItinerary)
 
-export default connect(mapStateToProp, mapDispatchToProps)(CreateItinerary)
+
+
+

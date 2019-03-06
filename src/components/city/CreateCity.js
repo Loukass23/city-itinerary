@@ -93,8 +93,8 @@ class CreateCity extends Component {
             <div className="container">
                 <div className="row valign-wrapper">
                     <div className="col s1" >
-                        <Link to='/city'><a className="btn-floating btn-large waves-effect waves-light red lighten-3">
-                            <i className=" white-text lighten-3 fas fa-2x fa-arrow-left " /></a></Link>
+                        <Link to='/city'><div className="btn-floating btn-large waves-effect waves-light red lighten-3">
+                            <i className=" white-text lighten-3 fas fa-2x fa-arrow-left " /></div></Link>
                     </div>
                     <h4 className="col s11" >
                         Create City
