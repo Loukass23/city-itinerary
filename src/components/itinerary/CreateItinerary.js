@@ -8,6 +8,7 @@ import './itinerary.css'
 import { firestoreConnect } from 'react-redux-firebase'
 import 'materialize-css/dist/css/materialize.min.css'
 import M from 'materialize-css/dist/js/materialize.min.js'
+import { bindActionCreators } from 'redux'
 
 
 class CreateItinerary extends Component {
@@ -103,7 +104,7 @@ class CreateItinerary extends Component {
 
                             {cities && cities.map((city, i) => {
                                 return (
-                                    <option htmlFor="cityName" key={i} value={city.name}>{city.name}</option>
+                                    <option htmlFor="cityName" key={i} value={city.cityName}>{city.cityName}</option>
 
                                 )
                             })}
@@ -162,27 +163,36 @@ class CreateItinerary extends Component {
         )
     }
 }
+
 const mapDispatchToProps = (dispatch) => {
     return {
+
         createItinerary: (itinerary) => dispatch(createItinerary(itinerary))
 
     }
 }
 
-const mapStatetoProps = (state) => {
+const mapStateToProps = (state) => {
     //console.log(state)
     return {
         cities: state.firestore.ordered.cities,
 
     }
 }
-//export default connect(mapStatetoProps)(Dashboard)
+
 export default compose(
-    connect(mapStatetoProps, mapDispatchToProps),
+    connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
         { collection: 'cities', orderBy: ['createdAt', 'desc'] }
-    ])
+    ]),
 )(CreateItinerary)
+
+// export default compose(
+//     connect(mapStatetoProps), 
+//     firestoreConnect([
+//         { collection: 'cities', orderBy: ['createdAt', 'desc'] }
+//     ])
+// )(CreateItinerary)
 
 
 
