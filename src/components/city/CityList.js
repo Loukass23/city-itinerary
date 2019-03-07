@@ -4,6 +4,7 @@ import MarcusCity from './MarcusCity'
 
 const CityList = ({ cities }) => {
     return (
+
         <div className="cities-list section">
             {cities && cities.map(city => {
                 return (

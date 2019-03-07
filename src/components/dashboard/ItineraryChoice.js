@@ -2,25 +2,60 @@ import React, { Component } from 'react'
 import ItineraryList from '../itinerary/ItineraryList'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
+import { compose, withHandlers, lifecycle } from 'recompose'
+
 import { Link } from 'react-router-dom'
+import firebase from "firebase";
+import { withFirestore, isLoaded, isEmpty } from 'react-redux-firebase'
+
+
+
+
+
 
 
 class ItineraryChoice extends Component {
+    state = {
+        myCity: null
+    }
+    componentDidMount() {
+        const param = this.props.match.params.name
+
+        firebase
+            .firestore()
+            .collection("cities")
+            .where("cityName", '==', param)
+            .get()
+            .then(querySnapshot => {
+                const cities = [];
+                querySnapshot.forEach(function (doc) {
+
+                    cities.push(doc.data())
+                })
+                const myCity = cities[0]
+                console.log(myCity)
+                this.setState({ myCity });
+
+            })
+            .catch(function (error) {
+                console.log("Error getting documents: ", error);
+            });
+    }
+
     render() {
-        const { itineraries, city } = this.props;
+        const { itineraries, city, cities } = this.props;
         console.log(this.props)
         return (
             <div className="dashboard container">
-                <div className="row valign-wrapper">
+                {this.state.myCity && <div className="row valign-wrapper" style={{ backgroundImage: "url(" + this.state.myCity.photoURL + ")" }}>
                     <div className="col s1" >
-                        <Link to='/city'><a class="btn-floating btn-large waves-effect waves-light red lighten-3">
-                            <i className=" white-text lighten-3 fas fa-2x fa-arrow-left " /></a></Link>
+                        <Link to='/city'><div className="btn-floating btn-large waves-effect waves-light red lighten-3">
+                            <i className=" white-text lighten-3 fas fa-2x fa-arrow-left " /></div></Link>
                     </div>
                     <h3 className="col s11" >
-                        {city}
+                        {this.state.myCity.cityName}
                     </h3>
-                </div>
+                </div>}
 
                 <div className="">
                     <ItineraryList itineraries={itineraries} city={city} />
@@ -31,35 +66,58 @@ class ItineraryChoice extends Component {
     }
 }
 const mapStateToProps = (state, ownProps) => {
-    const city = ownProps.match.params.name
     console.log(state.firestore)
+
+    const cityStr = ownProps.match.params.name
     const itinerariesList = state.firestore.ordered.itineraries
+    //const citiesList = state.firestore.ordered.cities
     const itineraries = itinerariesList ? itinerariesList.filter(e => {
-        return e.cityName === city
+        return e.cityName === cityStr
     }) : null
+
+    // const cities = citiesList ? citiesList.filter(e => {
+    //     return e.cityName === cityStr
+    // }) : null
+
     return {
         itineraries: itineraries,
-        city: city
+        city: cityStr,
         // auth: state.firebase.auth,
         //         // notifications: state.firestore.ordered.notifications
     }
 }
-/*
-const mapStateToProps = (state, ownProps) => {
-    const city = ownProps.match.params.name
-    const itineraries = state.itinerary.itineraries.filter(e => {
-        return e.cityName === city
-    })
-    return {
-        itineraries: itineraries
-    }
-}*/
+const fconnect = firestoreConnect([
+    { collection: 'itineraries', orderBy: ['createdAt', 'desc'] },
+    { collection: 'cities', orderBy: ['createdAt', 'desc'] },
 
+    // {
+    //     collection: 'cities',
+    //     where: [
+    //         ['cityName', '==', 'London']
+    //     ]
+
+    // }
+])
 
 //export default connect(mapStateToProps)(ItineraryChoice)
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect([
-        { collection: 'itineraries', orderBy: ['createdAt', 'desc'] }
+    fconnect)(ItineraryChoice)
 
-    ]))(ItineraryChoice)
+
+// const enhance = compose(
+//     withFirestore, // add firestore to props
+//     lifecycle({
+//         componentDidMount() {
+//             console.log(this.props.match.params.name)
+//             this.props.firestore.collection('cities').get() // equivalent without withHandlers
+//             this.props.firestore.get('itineraries')
+//         }
+//     }),
+//     connect((state) => ({
+//         myCity: state.firestore.ordered.cities,
+//         itineraries: state.firestore.ordered.itineraries
+//     }))
+// )
+
+// export default enhance(ItineraryChoice)

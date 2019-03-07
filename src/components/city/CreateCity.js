@@ -93,7 +93,7 @@ class CreateCity extends Component {
             <div className="container">
                 <div className="row valign-wrapper">
                     <div className="col s1" >
-                        <Link to='/city'><div className="btn-floating btn-large waves-effect waves-light red lighten-3">
+                        <Link to='/city'><div className="btn-floating btn-large waves-effect waves-light red lighten-2">
                             <i className=" white-text lighten-3 fas fa-2x fa-arrow-left " /></div></Link>
                     </div>
                     <h4 className="col s11" >
@@ -112,7 +112,7 @@ class CreateCity extends Component {
                     <div className="input-field">
                         <select required
                             value={this.state.value}
-                            onChange={this.changeSelectHandler} id="countryName">
+                            onChange={this.handleChange} id="countryName">
 
                             {this.state.options && this.state.options.map((country, i) => {
                                 return (
@@ -157,7 +157,7 @@ class CreateCity extends Component {
 
                     </div>
                     <div className="input-field">
-                        <button className="btn pink lighten-1 z-depth-0">Create</button>
+                        <button disabled={this.isUploading} className="btn red lighten-2 z-depth-0">Create</button>
                     </div>
                 </form>
             </div>

@@ -19,7 +19,23 @@ exports.itineraryCreated = functions.firestore
             content: 'Added a new itinerary',
             user: `${itinerary.authorFirstName} ${itinerary.authorLastName}`,
             time: admin.firestore.FieldValue.serverTimestamp(),
-            itinerary: doc.id
+            itineraryId: doc.id,
+
+        }
+        return createNotification(notification)
+    })
+
+exports.itineraryCity = functions.firestore
+    .document('cities/{citiesId}').onCreate((doc, context) => {
+
+        const itinerary = doc.data();
+        console.log(doc.id)
+        const notification = {
+            content: 'Added a new city: ' + doc.cityName,
+            user: `${itinerary.authorFirstName} ${itinerary.authorLastName}`,
+            time: admin.firestore.FieldValue.serverTimestamp(),
+            cityId: doc.id,
+            
         }
         return createNotification(notification)
     })
