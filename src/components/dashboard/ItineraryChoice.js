@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import ItineraryList from '../itinerary/ItineraryList'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
-import { compose, withHandlers, lifecycle } from 'recompose'
-
+//import { compose, withHandlers, lifecycle } from 'recompose'
+import { compose } from 'redux'
 import { Link } from 'react-router-dom'
 import firebase from "firebase";
 import { withFirestore, isLoaded, isEmpty } from 'react-redux-firebase'
@@ -19,27 +19,27 @@ class ItineraryChoice extends Component {
         myCity: null
     }
     componentDidMount() {
-        const param = this.props.match.params.name
+        // const param = this.props.match.params.name
 
-        firebase
-            .firestore()
-            .collection("cities")
-            .where("cityName", '==', param)
-            .get()
-            .then(querySnapshot => {
-                const cities = [];
-                querySnapshot.forEach(function (doc) {
+        // firebase
+        //     .firestore()
+        //     .collection("cities")
+        //     .where("cityName", '==', param)
+        //     .get()
+        //     .then(querySnapshot => {
+        //         const cities = [];
+        //         querySnapshot.forEach(function (doc) {
 
-                    cities.push(doc.data())
-                })
-                const myCity = cities[0]
-                console.log(myCity)
-                this.setState({ myCity });
+        //             cities.push(doc.data())
+        //         })
+        //         const myCity = cities[0]
+        //         console.log(myCity)
+        //         this.setState({ myCity });
 
-            })
-            .catch(function (error) {
-                console.log("Error getting documents: ", error);
-            });
+        //     })
+        //     .catch(function (error) {
+        //         console.log("Error getting documents: ", error);
+        //     });
     }
 
     render() {
@@ -47,15 +47,15 @@ class ItineraryChoice extends Component {
         console.log(this.props)
         return (
             <div className="dashboard container">
-                {this.state.myCity && <div className="row valign-wrapper" style={{ backgroundImage: "url(" + this.state.myCity.photoURL + ")" }}>
+                <div className="row valign-wrapper" >
                     <div className="col s1" >
                         <Link to='/city'><div className="btn-floating btn-large waves-effect waves-light red lighten-3">
                             <i className=" white-text lighten-3 fas fa-2x fa-arrow-left " /></div></Link>
                     </div>
                     <h3 className="col s11" >
-                        {this.state.myCity.cityName}
+                        {city}
                     </h3>
-                </div>}
+                </div>
 
                 <div className="">
                     <ItineraryList itineraries={itineraries} city={city} />
@@ -70,25 +70,26 @@ const mapStateToProps = (state, ownProps) => {
 
     const cityStr = ownProps.match.params.name
     const itinerariesList = state.firestore.ordered.itineraries
-    //const citiesList = state.firestore.ordered.cities
+    const citiesList = state.firestore.ordered.cities
     const itineraries = itinerariesList ? itinerariesList.filter(e => {
         return e.cityName === cityStr
     }) : null
 
-    // const cities = citiesList ? citiesList.filter(e => {
-    //     return e.cityName === cityStr
-    // }) : null
+    const cities = citiesList ? citiesList.filter(e => {
+        return e.cityName === cityStr
+    }) : null
 
     return {
         itineraries: itineraries,
         city: cityStr,
+        cities: cities
         // auth: state.firebase.auth,
         //         // notifications: state.firestore.ordered.notifications
     }
 }
 const fconnect = firestoreConnect([
     { collection: 'itineraries', orderBy: ['createdAt', 'desc'] },
-    { collection: 'cities', orderBy: ['createdAt', 'desc'] },
+    { collection: 'cities', orderBy: ['createdAt', 'desc'] }
 
     // {
     //     collection: 'cities',

@@ -15,7 +15,7 @@ class CityChoice extends Component {
         return (
             <div className="cities container">
                 <div className="row valign-wrapper">
-                    <div className="col s1" >
+                    <div style={{ paddingTop: '10px' }} className="col s1" >
                         <Link to='/'>
                             <div className="btn-floating btn-large waves-effect waves-light red lighten-3"><i className="material-icons">home</i></div>
                         </Link>

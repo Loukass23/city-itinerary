@@ -15,7 +15,7 @@ export const createItinerary = (itinerary) => {
         const firestore = getFirestore();
         firestore.collection('itineraries').add({
             //...itinerary,
-            cityName: itinerary.cityName,
+            cityName: itinerary.cityN,
             title: itinerary.title,
             authorFirstName: profile.firstName,
             authorLastName: profile.lastName,

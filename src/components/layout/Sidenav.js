@@ -26,6 +26,12 @@ class Sidenav extends Component {
             draggable: true
         };
 
+        var drop = document.querySelectorAll('.dropdown-trigger')
+        var instanceDrop = M.Dropdown.init(drop, {
+            coverTrigger: false,
+            constrainWidth: false,
+        });
+
 
     }
     render() {
@@ -40,10 +46,12 @@ class Sidenav extends Component {
                 <nav>
                     <div className="nav-wrapper">
 
-                        <Link to='/' className="brand-logo" >City Itineraries</Link>
+                        <Link to='/' className="" >City Itineraries</Link>
                         <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
                         <ul style={{ paddingRight: "10px" }} className="right hide-on-med-and-down valign-wrapper pr3">
                             {links}
+
+                            <li><a className="dropdown-trigger" href="#!" data-target="dropdown1"><i className="material-icons right">notifications</i></a></li>
 
                             <li> {avatar}</li>
 
@@ -52,6 +60,10 @@ class Sidenav extends Component {
                         </ul>
                     </div>
                 </nav>
+                <ul id="dropdown1" class="dropdown-content">
+                    <li><Notifications notifications={notifications} /></li>
+
+                </ul>
 
                 <ul className="sidenav" id="mobile-demo">
                     <li>

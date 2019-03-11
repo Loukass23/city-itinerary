@@ -20,7 +20,7 @@ class CreateItinerary extends Component {
     }
     state = {
         title: '',
-        cityName: '',
+        cityN: '',
         file: null,
         isUploading: false,
         progress: 0,
@@ -37,6 +37,7 @@ class CreateItinerary extends Component {
         })
     }
     handleSubmit = (e) => {
+        console.log(this.state)
         e.preventDefault();
         this.props.createItinerary(this.state)
         this.props.history.push('/')
@@ -77,8 +78,8 @@ class CreateItinerary extends Component {
             width: this.state.progress + "%"
         }
         const { cities, input } = this.props
-        console.log(this.props)
         //if (!auth.uid) return <Redirect to='/signin' />
+        console.log(cities)
         return (
             <div className="container">
                 <div className="row valign-wrapper">
@@ -100,7 +101,8 @@ class CreateItinerary extends Component {
                     </div>
 
                     <div className="input-field">
-                        <select required onChange={this.handleChange} id="cityName">
+
+                        <select required onChange={this.handleChange} id="cityN">
 
                             {cities && cities.map((city, i) => {
                                 return (
@@ -159,6 +161,7 @@ class CreateItinerary extends Component {
                         <button className="btn pink lighten-1 z-depth-0">Create</button>
                     </div>
                 </form>
+
             </div>
         )
     }
@@ -173,7 +176,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-    //console.log(state)
+    console.log(state)
     return {
         cities: state.firestore.ordered.cities,
 
