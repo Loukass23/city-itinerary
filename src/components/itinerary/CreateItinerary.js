@@ -20,7 +20,7 @@ class CreateItinerary extends Component {
     }
     state = {
         title: '',
-        cityN: '',
+        cityName: '',
         file: null,
         isUploading: false,
         progress: 0,
@@ -49,7 +49,7 @@ class CreateItinerary extends Component {
         console.log(this.state.file.name)
         this.setState({ isUploading: true, progress: 0 })
 
-        const uploadTask = storageRef.child(`images/${this.state.file.name}`).put(this.state.file); //create a child directory called images, and place the file inside this directory
+        const uploadTask = storageRef.child(`itinerary/${this.state.file.name}`).put(this.state.file); //create a child directory called images, and place the file inside this directory
 
         uploadTask.on('state_changed', (snapshot) => {
             console.log(snapshot)
@@ -64,7 +64,7 @@ class CreateItinerary extends Component {
             this.setState({ isUploading: false, progress: 100 })
             firebase
                 .storage()
-                .ref("images")
+                .ref("itinerary")
                 .child(`${this.state.file.name}`)
                 .getDownloadURL()
                 .then(url => this.setState({ photoURL: url }));
@@ -102,7 +102,9 @@ class CreateItinerary extends Component {
 
                     <div className="input-field">
 
-                        <select required onChange={this.handleChange} id="cityN">
+                        <select required onChange={this.handleChange} id="cityName">
+                            <option value="" disabled selected>Choose your option</option>
+
 
                             {cities && cities.map((city, i) => {
                                 return (

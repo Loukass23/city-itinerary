@@ -14,14 +14,13 @@ class Dashboard extends Component {
         console.log(notifications)
         return (
             <div className="dashboard container">
+                <h1>Dashboard</h1>
                 <div className="row">
                     <div className="col s12 m6">
                         <CityChoice />
                     </div>
 
-                    <div className="col sm8 offset-m1">
-                        <Notifications notifications={notifications} />
-                    </div>
+
 
                 </div>
                 <div className="dashboard container">
@@ -36,16 +35,16 @@ class Dashboard extends Component {
 const mapStatetoProps = (state) => {
     //console.log(state)
     return {
-        cities: state.city.cities,
+        //cities: state.city.cities,
         // projects: state.firestore.ordered.projects,
         // auth: state.firebase.auth,
         notifications: state.firestore.ordered.notifications
     }
 }
-//export default connect(mapStatetoProps)(Dashboard)
-export default compose(
-    connect(mapStatetoProps),
-    firestoreConnect([
-        { collection: 'notifications', limit: 3, orderBy: ['time', 'desc'] }
-    ])
-)(Dashboard)
+export default connect(mapStatetoProps)(Dashboard)
+// export default compose(
+//     connect(mapStatetoProps),
+//     firestoreConnect([
+//         { collection: 'notifications', limit: 3, orderBy: ['time', 'desc'] }
+//     ])
+// )(Dashboard)

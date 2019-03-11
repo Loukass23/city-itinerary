@@ -30,6 +30,7 @@ class Sidenav extends Component {
         var instanceDrop = M.Dropdown.init(drop, {
             coverTrigger: false,
             constrainWidth: false,
+
         });
 
 
@@ -60,7 +61,7 @@ class Sidenav extends Component {
                         </ul>
                     </div>
                 </nav>
-                <ul id="dropdown1" class="dropdown-content">
+                <ul id="dropdown1" className="dropdown-content">
                     <li><Notifications notifications={notifications} /></li>
 
                 </ul>

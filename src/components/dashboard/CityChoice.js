@@ -30,7 +30,10 @@ class CityChoice extends Component {
                     <CityList cities={cities} />
 
                 </div>
-
+                <div className="row">
+                    <Link to='/createCity'><div className="btn-floating btn-large waves-effect waves-light red lighten-3">
+                        <i className="material-icons">add</i></div></Link>
+                </div>
             </div>
 
         )

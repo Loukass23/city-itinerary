@@ -60,6 +60,10 @@ class ItineraryChoice extends Component {
                 <div className="">
                     <ItineraryList itineraries={itineraries} city={city} />
                 </div>
+                <div className="row">
+                    <Link to='/createItinerary'><div className="btn-floating btn-large waves-effect waves-light red lighten-3">
+                        <i className="material-icons">add</i></div></Link>
+                </div>
 
             </div>
         )

@@ -78,7 +78,11 @@ class CreateCity extends Component {
                 .ref("cities")
                 .child(`${this.state.file.name}`)
                 .getDownloadURL()
-                .then(url => this.setState({ photoURL: url }));
+                .then(url => {
+                    console.log(url)
+                    this.setState({ photoURL: url })
+                })
+
 
         });
     }

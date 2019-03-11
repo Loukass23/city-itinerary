@@ -33,10 +33,11 @@ exports.itineraryCreated = functions.firestore
         const itinerary = doc.data();
         console.log(doc.id)
         const notification = {
-            content: 'Added a new itinerary',
+            content: 'Added a new itinerary for ' + itinerary.cityName,
             user: `${itinerary.authorFirstName} ${itinerary.authorLastName}`,
             time: admin.firestore.FieldValue.serverTimestamp(),
             itineraryId: doc.id,
+            cityName: itinerary.cityName
 
         }
         return createNotification(notification)
@@ -47,7 +48,7 @@ exports.cityCreated = functions.firestore
 
         const city = doc.data();
         const notification = {
-            content: 'Added a new city: ' + city.cityName + ", " + city.countryName,
+            content: 'added a new city: ' + city.cityName + ", " + city.countryName,
             user: `${city.authorFirstName} ${city.authorLastName}`,
             time: admin.firestore.FieldValue.serverTimestamp(),
             cityId: doc.id,

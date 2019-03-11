@@ -1,0 +1,17 @@
+[debug] [2019-03-11T18:35:58.260Z] ----------------------------------------------------------------------
+[debug] [2019-03-11T18:35:58.264Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Lucas\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-03-11T18:35:58.264Z] CLI Version:   6.4.0
+[debug] [2019-03-11T18:35:58.264Z] Platform:      win32
+[debug] [2019-03-11T18:35:58.264Z] Node Version:  v10.14.1
+[debug] [2019-03-11T18:35:58.266Z] Time:          Mon Mar 11 2019 19:35:58 GMT+0100 (GMT+01:00)
+[debug] [2019-03-11T18:35:58.267Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-03-11T18:35:58.290Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-03-11T18:35:58.291Z] > authorizing via signed-in user
+[debug] [2019-03-11T18:35:58.291Z] [iam] checking project city-itinerary for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-03-11T18:35:58.294Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-03-11T18:35:58.294Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-03-11T18:35:58.522Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-11T18:35:58.535Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/city-itinerary:testIamPermissions  
+
