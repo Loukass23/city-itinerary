@@ -15,7 +15,6 @@ import M from 'materialize-css/dist/js/materialize.min.js'
 class CreateCity extends Component {
 
     componentDidMount() {
-        console.log(M);
         M.AutoInit();
 
 
@@ -56,14 +55,11 @@ class CreateCity extends Component {
     handleUpload = () => {
         const storageService = firebase.storage();
         const storageRef = storageService.ref();
-
-        console.log(this.state.file.name)
         this.setState({ isUploading: true, progress: 0 })
 
         const uploadTask = storageRef.child(`cities/${this.state.file.name}`).put(this.state.file); //create a child directory called images, and place the file inside this directory
 
         uploadTask.on('state_changed', (snapshot) => {
-            console.log(snapshot)
             let prog = Math.round(snapshot.bytesTransferred * 100 / snapshot.totalBytes)
             this.setState({ progress: prog });
 
@@ -77,6 +73,10 @@ class CreateCity extends Component {
                 .storage()
                 .ref("cities")
                 .child(`${this.state.file.name}`)
+                // .getMetadata()
+                // .then(meta => {
+                //     console.log(meta)
+                // })
                 .getDownloadURL()
                 .then(url => {
                     console.log(url)
@@ -93,7 +93,6 @@ class CreateCity extends Component {
             width: this.state.progress + "%"
         }
         const { cities, input } = this.props
-        console.log(this.state.options)
         //if (!auth.uid) return <Redirect to='/signin' />
         return (
             <div className="container">
@@ -157,13 +156,9 @@ class CreateCity extends Component {
 
                     </div>
                     <div className="input-field">
-
-
-
-
                     </div>
                     <div className="input-field">
-                        <button disabled={this.isUploading} className="btn red lighten-2 z-depth-0">Create</button>
+                        {!this.isUploading && <button disabled={this.isUploading} className="btn red lighten-2 z-depth-0">Create</button>}
                     </div>
                 </form>
             </div>
@@ -179,3 +174,4 @@ const mapDispatchToProps = (dispatch) => {
 
 
 export default connect(null, mapDispatchToProps)(CreateCity)
+

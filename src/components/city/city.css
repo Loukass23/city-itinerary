@@ -3,3 +3,13 @@
     width: 100%;
     font-size: 30px;
 }
+
+.card img {
+    height: -webkit-fill-available;
+    object-fit: cover;
+}
+
+.card img.materialized.active {
+    max-height: none;
+    object-fit: none;
+}

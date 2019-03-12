@@ -94,6 +94,8 @@ class Sidenav extends Component {
 
                     <li>
                         <div className="divider" />
+                        <span className="teal-text">Notifications</span>
+
                         <Notifications notifications={notifications} />
 
                     </li>
