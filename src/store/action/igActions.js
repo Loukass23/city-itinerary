@@ -21,19 +21,4 @@ export const getIgProfile = () => {
     }
 
 }
-// export function getIgProfile(options) {
-//     return (dispatch) => {
-//         return axios.get(options.userURL + options.accessToken).then((response) => {
-//             console.log(response)
-//             dispatch(setIgUser(response.data));
-//         })
-//     }
-// }
-
-// export function setIgUser(igUser) {
-//     return {
-//         type: "GET_IG",
-//         igUser: igUser
-//     }
-// }
 

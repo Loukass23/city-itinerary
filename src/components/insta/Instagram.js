@@ -9,7 +9,6 @@ import { bindActionCreators } from 'redux';
 
 
 class Instagram extends Component {
-
     componentDidMount() {
         Instafeed(options).then((res) => this.setState({ data: res.data }))
         this.props.getIgProfile()
