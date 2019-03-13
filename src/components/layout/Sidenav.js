@@ -69,7 +69,7 @@ class Sidenav extends Component {
                 <ul className="sidenav" id="mobile-demo">
                     <li>
                         {auth.uid && <div className="user-view valign-wrapper">
-                            <div className="background indigo lighten-4">
+                            <div className="background teal lighten-1">
                                 {/* <img src={BerlinPhoto} alt="" /> */}
                             </div>
                             <div className="row">

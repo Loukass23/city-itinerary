@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     itinerary: itineraryReducer,
     firestore: firestoreReducer,
     firebase: firebaseReducer,
-    igUser: igReducer
+    ig: igReducer
 });
 
 

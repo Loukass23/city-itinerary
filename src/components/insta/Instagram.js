@@ -1,33 +1,31 @@
 import React, { Component } from 'react'
 import IgItem from './IgItem'
-import Instafeed from "react-instafeed";
-import buildUrl from "react-instafeed";
-import { options } from '../../config/instaConfig'
-import { getIgProfile } from '../../store/action/igActions'
+import IgUser from './IgUser'
+import { getIgProfile, getIgData } from '../../store/action/igActions'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
+
 
 
 class Instagram extends Component {
     componentDidMount() {
-        Instafeed(options).then((res) => this.setState({ data: res.data }))
         this.props.getIgProfile()
+        this.props.getIgData()
 
-    }
-    state = {
-        data: null,
     }
 
     render() {
-        const { igUser } = this.props
-        const data = this.state.data
+        const { igUser, igData } = this.props
         console.log(igUser)
         return (
             <div className="section">
-                {data && data.map(img => {
+                <div className="row">
+                    {igUser && <IgUser user={igUser} />
+                    }
+                </div>
+                {igData && igData.map(post => {
                     return (
                         // <Link to={'/city/' + city.cityName} key={city.cityName}>
-                        <IgItem img={img} key={img.id} />
+                        <IgItem post={post} key={post.id} />
                         // </Link>
                     )
                 })}
@@ -36,14 +34,15 @@ class Instagram extends Component {
     }
 }
 const mapStateToProp = (state) => {
-    console.log(state)
     return {
-        igUser: state.igUser.igUser
+        igUser: state.ig.igUser,
+        igData: state.ig.igData
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        getIgProfile: () => dispatch(getIgProfile())
+        getIgProfile: () => dispatch(getIgProfile()),
+        getIgData: () => dispatch(getIgData())
     }
 }
 export default connect(mapStateToProp, mapDispatchToProps)(Instagram)

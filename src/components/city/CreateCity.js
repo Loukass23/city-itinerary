@@ -86,8 +86,6 @@ class CreateCity extends Component {
 
         });
     }
-
-
     render() {
         const progressBarUp = {
             width: this.state.progress + "%"

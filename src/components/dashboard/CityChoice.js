@@ -10,8 +10,7 @@ import { Redirect } from 'react-router-dom'
 
 class CityChoice extends Component {
     render() {
-        const { cities, notifications } = this.props;
-        console.log(notifications)
+        const { cities } = this.props;
         return (
             <div className="cities container">
                 <div className="row valign-wrapper">

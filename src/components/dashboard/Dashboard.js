@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import CityChoice from './CityChoice'
 import Notifications from './Notifications'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import CoverImg from '../../assets/img/cover.png'
 import Insta from './Insta'
 
 
@@ -14,7 +12,7 @@ import Insta from './Insta'
 class Dashboard extends Component {
     render() {
 
-        const { cities, notifications } = this.props;
+        const { cities } = this.props;
         console.log(cities)
         return (
             <div className="dashboard container">
@@ -55,8 +53,7 @@ const mapStatetoProps = (state) => {
     return {
         cities: state.firestore.ordered.cities,
         // projects: state.firestore.ordered.projects,
-        // auth: state.firebase.auth,
-        notifications: state.firestore.ordered.notifications
+
     }
 }
 //export default connect(mapStatetoProps)(Dashboard)
