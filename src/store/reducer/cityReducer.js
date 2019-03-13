@@ -1,24 +1,24 @@
 import BerlinPhoto from '../../assets/img/Berlin.jpg'
 
 const initState = {
-    cities: [{
-        id: 1,
-        name: 'Berlin',
-        photo: BerlinPhoto,
-        details: 'Welcome to Berlin'
-    },
-    {
-        id: 2,
-        name: 'Paris',
-        details: 'content2'
-    }
-        //,
-        //     {
-        //         id: 3,
-        //         title: 'title3',
-        //         content: 'content3'
-        //     },
-    ]
+    // cities: [{
+    //     id: 1,
+    //     name: 'Berlin',
+    //     photo: BerlinPhoto,
+    //     details: 'Welcome to Berlin'
+    // },
+    // {
+    //     id: 2,
+    //     name: 'Paris',
+    //     details: 'content2'
+    // }
+    //     //,
+    //     //     {
+    //     //         id: 3,
+    //     //         title: 'title3',
+    //     //         content: 'content3'
+    //     //     },
+    // ]
 }
 
 const cityReducer = (state = initState, action) => {

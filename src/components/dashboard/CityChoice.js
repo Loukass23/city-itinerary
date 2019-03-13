@@ -17,12 +17,12 @@ class CityChoice extends Component {
                 <div className="row valign-wrapper">
                     <div style={{ paddingTop: '10px' }} className="col s1" >
                         <Link to='/'>
-                            <div className="btn-floating btn-large waves-effect waves-light red lighten-3"><i className="material-icons">home</i></div>
+                            <div className="btn-floating btn-medium waves-effect waves-light red lighten-3"><i className="material-icons">home</i></div>
                         </Link>
                     </div>
-                    <h3 className="col s11" >
+                    <h4 className="col s11" >
                         Cities
-                        </h3>
+                        </h4>
 
                 </div>
                 <div className="">

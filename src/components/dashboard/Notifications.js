@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 
 const Notifications = (props) => {
     const { notifications } = props
-    console.log("notif", notifications)
     return (
 
         <ul className="notifications">

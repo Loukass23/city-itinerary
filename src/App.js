@@ -10,6 +10,7 @@ import SignUp from './components/auth/SignUp'
 import Navbar from './components/layout/Sidenav'
 import './App.css';
 import CreateCity from './components/city/CreateCity';
+import Insta from './components/dashboard/Insta';
 
 
 export default class App extends Component {
@@ -27,6 +28,7 @@ export default class App extends Component {
             <Route path='/createCity' component={CreateCity} />
             <Route path='/signin' component={SignIn} />
             <Route path='/signup' component={SignUp} />
+            <Route path='/instagram' component={Insta} />
           </Switch>
         </div>
       </BrowserRouter>

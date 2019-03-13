@@ -47,7 +47,7 @@ class Sidenav extends Component {
                 <nav>
                     <div className="nav-wrapper">
 
-                        <Link to='/' className="" >City Itineraries</Link>
+                        <Link to='/' className="brand-logo" >FOC</Link>
                         <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
                         <ul style={{ paddingRight: "10px" }} className="right hide-on-med-and-down valign-wrapper pr3">
                             {links}
