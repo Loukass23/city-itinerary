@@ -10,6 +10,8 @@ import thunk from 'redux-thunk'
 import { reduxFirestore, getFirestore } from 'redux-firestore'
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
 import firebaseConfig from './config/firebaseConfig'
+import axiosMiddleware from 'redux-axios-middleware';
+import axios from 'axios';
 
 
 // const store = createStore(rootReducer)
@@ -18,6 +20,7 @@ import firebaseConfig from './config/firebaseConfig'
 const store = createStore(rootReducer,
     compose(
         applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
+        applyMiddleware(axiosMiddleware(axios)),
         reduxFirestore(firebaseConfig),
         reactReduxFirebase(firebaseConfig, { useFirestoreForProfile: true, userProfile: 'users', attachAuthIsReady: true })
     ))
