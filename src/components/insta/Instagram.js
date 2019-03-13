@@ -36,7 +36,6 @@ class Instagram extends Component {
         );
     }
 }
-
 const mapStateToProp = (state) => {
     console.log(state)
     return {
