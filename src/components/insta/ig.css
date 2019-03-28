@@ -2,3 +2,15 @@
     height: 100px;
     width: 100px;
 }
+
+
+.__react_modal_image__modal_content img,
+.__react_modal_image__modal_content svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    -ms-transform: translate3d(-50%, -50%, 0);
+    overflow: hidden;
+}

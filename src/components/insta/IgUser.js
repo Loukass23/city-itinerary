@@ -8,6 +8,7 @@ const IgUser = ({ user }) => {
         <div className="col s12">
             <div className="card medium">
                 <div className="card-title">{user.username}
+                    <p>{user.full_name}</p>
                 </div>
                 <div className="card-content">
                     <img id='user-img' className="circle" src={user.profile_picture} alt='' />

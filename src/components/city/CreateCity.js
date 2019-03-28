@@ -30,6 +30,7 @@ class CreateCity extends Component {
         summary: null,
         options: countryList().getData(),
         value: "",
+        error: null
 
     }
 
@@ -64,7 +65,7 @@ class CreateCity extends Component {
             this.setState({ progress: prog });
 
         }, (error) => {
-
+            this.setState({ error: error })
             console.log(error);
         }, () => {
             console.log('success');
@@ -92,6 +93,7 @@ class CreateCity extends Component {
         }
         const { cities, input } = this.props
         //if (!auth.uid) return <Redirect to='/signin' />
+        console.log(this.state.error)
         return (
             <div className="container">
                 <div className="row valign-wrapper">
@@ -157,10 +159,10 @@ class CreateCity extends Component {
                     </div>
                     <div className="input-field">
                         {!this.isUploading && <button disabled={this.isUploading} className="btn red lighten-2 z-depth-0">Create</button>}
+                        {this.state.error && <p className="red">You need to log in to create a new city</p>}
                     </div>
                 </form>
-            </div>
-        )
+            </div>)
     }
 }
 const mapDispatchToProps = (dispatch) => {

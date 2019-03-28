@@ -11,7 +11,7 @@ const Insta = () => {
                         <i className=" white-text lighten-3 fas fa-2x fa-arrow-left " /></div></Link>
                 </div>
                 <h4 className="col s11" >
-                    Instagram Posts
+                    Instagram
                 </h4>
             </div>
             <div className="row">

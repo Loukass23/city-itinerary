@@ -16,22 +16,18 @@ class Dashboard extends Component {
         console.log(cities)
         return (
             <div className="dashboard container">
-                <h1>FlightOclock</h1>
+                <h1>City Intinerary</h1>
                 <div className="row">
                     <Link to='/city'>
-                        <div className='card small' style={{ maxHeight: "200px" }} >
-                            <div className='card-image' style={{ maxHeight: "200px" }}>
-                                {cities && <img src={cities[0].photoURL} alt='' />}
-                                <span id="dash-city" style={{ height: '100%' }} className='card-title black-text lighten-2 '><h1>Cities</h1></span>
-                            </div>
+                        <div className='card red lighten-2 small' style={{ maxHeight: "200px" }} >
+                            <div className='card-title white-text lighten-2 '><h1>Cities</h1></div>
+
                         </div></Link>
-                    <Link to='/instagram'>
-                        <div className='card small' style={{ maxHeight: "200px" }} >
-                            <div className='card-image' style={{ maxHeight: "200px" }}>
-                                {cities && <img src={cities[1].photoURL} alt='' />}
-                                <span id="dash-city" style={{ height: '100%' }} className='card-title black-text lighten-2 '><h1>Instagram</h1></span>
-                            </div>
-                        </div></Link>
+                    {/* <Link to='/instagram'>
+                        <div className='card red lighten-2 small' style={{ maxHeight: "200px" }} >
+                            <div className='card-title white-text lighten-2 '><h1>Instagram</h1></div>
+
+                        </div></Link> */}
 
 
 
@@ -60,6 +56,6 @@ const mapStatetoProps = (state) => {
 export default compose(
     connect(mapStatetoProps),
     firestoreConnect([
-        { collection: 'cities', limit: 2, orderBy: ['createdAt', 'desc'] }
+        { collection: 'cities', orderBy: ['createdAt', 'desc'] }
     ])
 )(Dashboard)

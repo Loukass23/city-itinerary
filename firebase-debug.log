@@ -1,0 +1,91 @@
+[debug] [2019-03-28T13:24:00.480Z] ----------------------------------------------------------------------
+[debug] [2019-03-28T13:24:00.484Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Lucas\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-03-28T13:24:00.485Z] CLI Version:   6.4.0
+[debug] [2019-03-28T13:24:00.485Z] Platform:      win32
+[debug] [2019-03-28T13:24:00.485Z] Node Version:  v10.14.1
+[debug] [2019-03-28T13:24:00.487Z] Time:          Thu Mar 28 2019 14:24:00 GMT+0100 (GMT+01:00)
+[debug] [2019-03-28T13:24:00.487Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-03-28T13:24:00.537Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-03-28T13:24:00.539Z] > authorizing via signed-in user
+[debug] [2019-03-28T13:24:00.539Z] [iam] checking project city-itinerary for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-03-28T13:24:00.544Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-03-28T13:24:00.545Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-03-28T13:24:00.808Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-28T13:24:00.817Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/city-itinerary:testIamPermissions  
+
+[debug] [2019-03-28T13:24:01.711Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-28T13:24:01.713Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/city-itinerary  
+ 
+[debug] [2019-03-28T13:24:02.091Z] <<< HTTP RESPONSE 200
+[warn] !  functions: package.json indicates an outdated version of firebase-functions.
+ Please upgrade using npm install --save firebase-functions@latest in your functions directory.
+[info] 
+[info] === Deploying to 'city-itinerary'...
+[info] 
+[info] i  deploying functions, hosting
+[debug] [2019-03-28T13:24:08.027Z] > [functions] package.json contents: {
+  "name": "generate-thumbnail-functions",
+  "description": "Generate Thumbnail Firebase Functions sample",
+  "dependencies": {
+    "@google-cloud/storage": "^0.4.0",
+    "child-process-promise": "^2.2.0",
+    "mkdirp": "^0.5.1",
+    "mkdirp-promise": "^4.0.0",
+    "firebase-admin": "~5.11.0",
+    "firebase-functions": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.13.1",
+    "eslint-plugin-promise": "^3.6.0"
+  },
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint --max-warnings=0 .",
+    "serve": "firebase serve --only functions",
+    "shell": "firebase experimental:functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2019-03-28T13:24:08.031Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/city-itinerary?view=CONSUMER_VIEW  
+ 
+[debug] [2019-03-28T13:24:08.031Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/city-itinerary?view=CONSUMER_VIEW  
+ 
+[debug] [2019-03-28T13:24:09.397Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-28T13:24:09.523Z] <<< HTTP RESPONSE 200
+[info] +  functions: all necessary APIs are enabled
+[debug] [2019-03-28T13:24:09.525Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/city-itinerary  
+ 
+[debug] [2019-03-28T13:24:10.343Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-28T13:24:10.343Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/150124635351:getServerAppConfig  
+ 
+[debug] [2019-03-28T13:24:10.623Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-28T13:24:10.625Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/city-itinerary/versions  
+
+[debug] [2019-03-28T13:24:12.172Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2019-03-28T13:24:12.177Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/city-itinerary/configs  
+ 
+[debug] [2019-03-28T13:24:12.769Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (65.38 KB) for uploading
+[debug] [2019-03-28T13:24:15.156Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/city-itinerary/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2019-03-28T13:24:15.664Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-28T13:24:15.664Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-9fff55cc-a0c8-4237-9c15-886e2b5b5548/51a673b6-48f4-48d3-b23f-ebe0a14e561c.zip?GoogleAccessId=service-150124635351@gcf-admin-robot.iam.gserviceaccount.com&Expires=1553781255&Signature=Zwnk4Y0mUuBQuzY6dgiY13Yvh3NoJMHkHJtXNXgZ%2FUSjD0eteEpBoBDVC0Du7fox0aPH2y%2FOEfX%2BiYt5VqhPlBDqEZdY%2BvG2YMMcQ%2BhDYOvRQdNKL2YHCgfELvddfKtJpsPQAVTE35PZMuxIkLWDUG1FRxImeL8G8lQpxhYajfAe%2FPONp1HOybO18VOLRDqkyg4P1H6OI03vg49p53H03eMSKn3Qz5IL20LqSz9wToPXC8zVDE88WX1ilvqs6fLWZq7rVnOUgHCNzV51A%2BefZ95NSEThecbEh1%2FFy9pGfHxi36QG8LaAe3XiUoDM2MzO0OfdD7GC2iDOMou6C11zIg%3D%3D  
+
+[debug] [2019-03-28T13:24:16.216Z] <<< HTTP RESPONSE 200
+[info] +  functions: functions folder uploaded successfully
+[info] i  hosting[city-itinerary]: beginning deploy...
+[info] i  hosting[city-itinerary]: found 17 files in dist
+[debug] [2019-03-28T13:24:16.244Z] [hosting] hash cache [ZGlzdA] load error: lines is not defined
+[debug] [2019-03-28T13:24:17.582Z] [hosting] hash cache [ZGlzdA] stored for 17 files
+[debug] [2019-03-28T13:24:17.582Z] [hosting][hash queue][FINAL]
+[debug] [2019-03-28T13:24:17.582Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/city-itinerary/versions/ff78dc6a7840876a:populateFiles  
+ <request body omitted>
+[debug] [2019-03-28T13:24:19.165Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-28T13:24:19.177Z] [hosting][populate queue][FINAL]
+[debug] [2019-03-28T13:24:19.177Z] [hosting] uploads queued: 6
